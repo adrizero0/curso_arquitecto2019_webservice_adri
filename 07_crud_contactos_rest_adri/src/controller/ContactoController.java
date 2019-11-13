@@ -32,26 +32,25 @@ public class ContactoController {
 		return sContacto.buscarPorEmail(email);		
 	}
 	
-	@DeleteMapping (value = "/contactos/{idContacto}", produces=MediaType.TEXT_PLAIN_VALUE)
-	public String eliminarPorId(@PathVariable("idContacto") int idContacto) {
-		return sContacto.eliminarPorId(idContacto);
+	@DeleteMapping (value = "/contactos/{id}")
+	public void eliminarPorId(@PathVariable("id") int idContacto) {
+		sContacto.eliminarPorId(idContacto);
 	}
 	
-	@PostMapping (value = "/contactos", produces=MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String altaContacto(@RequestBody Contacto contacto) {
-		return (sContacto.altaContacto(contacto));
+	@PostMapping (value = "/contactos", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void altaContacto(@RequestBody Contacto contacto) {
+		sContacto.altaContacto(contacto);
 	}	
 
-	@PutMapping (produces=MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean actualizar(@RequestBody Contacto contacto) {
-		return sContacto.altaContacto(contacto);
-	}
+//	@PutMapping (produces=MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public void actualizar(@RequestBody Contacto contacto) {
+//		sContacto.altaContacto(contacto);
+//	}
 	
-	//PARA RECIBIR PARAMENTROS A TRAVES DE QUERY STRING, SE MAPEA CON REQUEST PARAM
-	@GetMapping (value = "/contactos/actualiza")
-	public void actualiza(@RequestParam ("idcontacto") int idContacto,
-							  @RequestParam ("email") String email) {
-	}
-	
+//	PARA RECIBIR PARAMENTROS A TRAVES DE QUERY STRING, SE MAPEA CON REQUEST PARAM
+//	@GetMapping (value = "/contactos/actualiza")
+//	public void actualiza(@RequestParam ("idcontacto") int idContacto,
+//							  @RequestParam ("email") String email) {
+//	}
 	
 }

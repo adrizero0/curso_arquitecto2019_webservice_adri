@@ -26,23 +26,17 @@ public class ServiceContactoImpl implements ServiceContacto {
 	
 	@Transactional
 	@Override
-	public boolean eliminarPorId(int idContacto) {
+	public void eliminarPorId(int idContacto) {
 		if(daoContactos.existsById(idContacto)) {
-		daoContactos.deleteById(idContacto);
-		return true;
-		}else {
-		return false;
+		daoContactos.deleteById(idContacto);;
 		}
 	}
 
 	@Transactional
 	@Override
-	public boolean altaContacto(Contacto contacto) {
+	public void altaContacto(Contacto contacto) {
 		if(!daoContactos.existsById(contacto.getIdContacto())) {
 			daoContactos.save(contacto);
-			return true;
-		}else {
-			return false;
 		}
 	}
 

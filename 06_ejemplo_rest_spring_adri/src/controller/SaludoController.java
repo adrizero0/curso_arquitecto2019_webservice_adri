@@ -1,6 +1,7 @@
 package controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,11 @@ public class SaludoController {
 	@PostMapping(value="/saludo", produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String personalizado(@RequestBody Persona persona) {
 		return "Bienvenido "+persona.getNombre()+" - "+persona.getEmail();
+	}
+	
+	@DeleteMapping(value="/saludo/{name}")
+	public void eliminar(@PathVariable("name") String n) {
+		System.out.println("Elimina a "+n);
 	}
 
 }
