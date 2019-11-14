@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,25 +16,42 @@
 
 </head>
 <body>
-
-<div class="container">
 <h1>Lista de contactos</h1>
-	<table class="table table-striped table-bordered">
-		<thead><tr><th>Nombre</th><th>Email</th><th>Edad</th></tr></thead>
-		<tbody>
-		
-		<c:forEach var="l" items="${requestScope.listaContactos}" >
-			<tr>
-				<td>${l.nombre}</td>
-				<td>${l.email}</td>
-				<td>${l.edad}</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
-	
-	<br/><br/>
-	<a href="toEntrada">Volver</a>
-</div>
+
+	<div class="container">
+	<c:choose>
+		<c:when test="${not empty requestScope.listaContactos}">
+		  <table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>ID</th>
+		        <th>Nombre</th>
+		        <th>Email</th>
+		        <th>Edad</th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	<c:forEach var="contacto" items="${requestScope.listaContactos}">	
+			      <tr>
+			        <td>${contacto.idContacto}</td>
+			        <td>${contacto.nombre}</td>
+			        <td>${contacto.email}</td>
+			        <td>${contacto.edad}</td>
+			        <td><a href="doEliminar?idContacto=${contacto.idContacto}">Eliminar</a></td>
+			      </tr>
+		      </c:forEach>
+		    </tbody>
+		  </table>
+	  </c:when>
+	  <c:otherwise>
+	  	<h1>Sin contactos</h1>
+	  </c:otherwise>
+	</c:choose>	
+	    <div class="col-sm-10">
+			
+			<a type="button" href='toEntrada' class="btn btn-default">Volver</a>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,25 +13,25 @@
 
 <div class="container">
   <h1>Alta</h1>
-  <br/>
-  <form action="doAltaContacto" method="post">
-    <div class="input-group">
-  	 	<span class="input-group-addon">Nombre</span>
-    	<input id="email" type="text" class="form-control" name="nombre" placeholder="nombre" required="required">
-	</div>
-	<div class="input-group">
-  	 	<span class="input-group-addon">Email</span>
-    	<input id="email" type="text" class="form-control" name="email" placeholder="email" >
-	</div>
-	<div class="input-group">
-  	 	<span class="input-group-addon">Edad</span>
-    	<input id="email" type="number" class="form-control" name="edad" placeholder="edad" >
-	</div>
+  
+  <f:form action="doAltaContacto" method="post" modelAttribute="contacto">
+
+		<div class="form-group">
+			<label>Nombre:</label>
+			<f:input path="nombre" class="form-control" style="width:30%" placeholder="Usuario" />
+		</div>
+		<div class="form-group">
+			<label>Correo electrónico:</label>
+			<f:input path="email" class="form-control" style="width:30%" placeholder="identificador@dominio.es"/>
+		</div>
+		  <div class="form-group">
+		    <label class="control-label col-sm-2" for="age">Edad:</label>		   
+		     <f:input path="edad" class="form-control" id="age"/>		    
+		  </div>		
+		<button type="submit" class="btn btn-default">Guardar</button>
+		
+	</f:form> <br/><br/>
 	
-  	<br/>
-    <button type="submit" class="btn btn-default btn-primary" style="width:100%"> Guardar</button>    
-  </form>
-  <br/><br/>
   <a href="toEntrada">Volver</a>
 </div>
 
