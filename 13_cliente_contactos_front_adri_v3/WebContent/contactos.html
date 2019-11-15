@@ -11,8 +11,8 @@
 <body onload="listaContactos();">
 
 	<script type="text/javascript">
+	var url="http://localhost:8080/07_crud_contactos_rest_adri/contactos";
 		function listaContactos(){
-			let url="http://localhost:8080/07_crud_contactos_rest_adri/contactos";
 			$.get(url,function(data,status){
 				procesarRespuesta(data);
 			});
@@ -27,7 +27,10 @@
 			tabla+="</table>";
 			$("#tabla").html(tabla);
 		}
-	
+		function eliminar(id){			
+			$.ajax({"url":url+"/"+id,"type":"DELETE"});
+			listaContactos();
+		}	
 	</script>
 
 	

@@ -14,14 +14,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-var url="http://localhost:8080/07_crud_contactos_rest/contactos";
+var url="http://localhost:8080/07_crud_contactos_rest_adri/contactos";
 function iniciar(){	
 	$.get(url,function(data,status){
 		procesarRespuesta(data);
 	});
 }
-function eliminar(id){
-	
+function eliminar(id){	
 	$.delete(url+"/"+id);
 	iniciar();
 }
