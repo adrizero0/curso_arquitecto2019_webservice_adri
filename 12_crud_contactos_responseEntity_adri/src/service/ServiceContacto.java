@@ -9,4 +9,5 @@ public interface ServiceContacto {
 	Contacto buscarPorEmail(String email);
 	void eliminarPorId(int idContacto);
 	void altaContacto(Contacto contacto);
+	
 }
