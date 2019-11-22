@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/07_crud_contactos_rest_adri/build/classes"/>
-        <property name="context-root" value="12_crud_contactos_responseEntity_adri"/>
+        <property name="context-root" value="07_crud_contactos_rest_adri"/>
     </wb-module>
 </project-modules>
