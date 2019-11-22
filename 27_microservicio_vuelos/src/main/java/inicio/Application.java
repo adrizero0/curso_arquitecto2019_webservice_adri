@@ -15,7 +15,5 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-//RUTA POSTMAN
-//	http://localhost:8761/servicio-vuelos/viajes/vuelos/10
 	
 }

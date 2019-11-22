@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,15 @@ public class ServiceVuelosImpl implements ServiceVuelos {
 
 	@Transactional
 	@Override
-	public void actualizarVuelo(int idVuelo, int plazas) {
-		if(daoVuelos.existsById(idVuelo)) {
-			List<Vuelo> vuelosDisp= getVuelosDisponibles(plazas);
-			for(Vuelo v:vuelosDisp) {
-				if(v.getIdvuelo()==idVuelo) {
-					v.setPlazas(v.getPlazas()-plazas);
-					daoVuelos.flush();
-				}
-			}
+	public boolean actualizarVuelo(int idVuelo, int plazas) {
+		boolean estado=false;
+		Vuelo vuelo= daoVuelos.findById(idVuelo).orElse(null);
+		if(vuelo!=null&&vuelo.getPlazas()>=plazas) {			
+			vuelo.setPlazas(vuelo.getPlazas()-plazas);
+			daoVuelos.flush();
+			estado=true;
 		}
-	}
+		return estado;
+	}	
+
 }

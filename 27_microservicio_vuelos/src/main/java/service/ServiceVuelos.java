@@ -6,5 +6,5 @@ import model.Vuelo;
 
 public interface ServiceVuelos {
 	List<Vuelo> getVuelosDisponibles(int plazas);
-	void actualizarVuelo(int idVuelo, int plazas);
+	boolean actualizarVuelo(int idVuelo, int plazas);
 }
