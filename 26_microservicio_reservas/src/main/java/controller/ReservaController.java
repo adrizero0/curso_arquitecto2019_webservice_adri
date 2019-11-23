@@ -33,18 +33,16 @@ public class ReservaController {
 	@Value("${client.url.vuelos}")
 	String url;
 	
-	@GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/reservas", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Reserva> obtenerReservas(){
 		return sReservas.getReservas();		
 	}
 	
 	@PostMapping (value = "/reservas", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> reservar(@RequestBody ReservaView reservaV) {
-		HttpStatus estado;
-	    HttpEntity<String> entity = new HttpEntity<String>("parameters", new HttpHeaders());		
-	    ResponseEntity<String> responseVuelos = template.exchange(url+"/"+reservaV.getReserva().getVuelo()+"/"+reservaV.getPlazas(), 
-	    													HttpMethod.PUT, entity, String.class);
-		
+		HttpStatus estado;	
+	    ResponseEntity<String> responseVuelos = template.exchange(url+reservaV.getReserva().getVuelo()+"/"+reservaV.getPlazas(), 
+	    													HttpMethod.PUT, null, String.class);
 		if(responseVuelos.getStatusCodeValue()==200) {
 			sReservas.reservar(reservaV.getReserva());
 			estado= HttpStatus.OK;
@@ -54,15 +52,6 @@ public class ReservaController {
 		ResponseEntity <String> response=new ResponseEntity<String> ("reserva", new HttpHeaders(),estado);
 		return response;
 	}
-	
-//{"reserva":
-//	  {
-//        "dni": "444",
-//        "hotel": 2,
-//        "nombre": "pipi",
-//        "vuelo": 2
-//    },
-// "plazas":2
-//}
+
 	
 }
