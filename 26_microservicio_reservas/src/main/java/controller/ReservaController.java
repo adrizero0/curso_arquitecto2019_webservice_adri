@@ -65,5 +65,4 @@ public class ReservaController {
 // "plazas":2
 //}
 	
-
 }
